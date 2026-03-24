@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Digital Clock</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Share+Tech+Mono&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Clock Display Area -->
+        <div id="clock-container" class="clock-style style-neon">
+            <div class="time-wrapper">
+                <span id="time-display">00:00:00</span>
+                <span id="ampm-display" class="ampm">AM</span>
+            </div>
+            <div id="date-display" class="date">Monday, Jan 01 2024</div>
+        </div>
+
+        <!-- Controls Area -->
+        <div class="controls">
+            <div class="control-group">
+                <label>Theme Selector</label>
+                <div class="style-grid">
+                    <button onclick="setStyle('style-neon')" class="btn-style" title="Neon Glow">🌌</button>
+                    <button onclick="setStyle('style-minimal')" class="btn-style" title="Minimal White">⚪</button>
+                    <button onclick="setStyle('style-gradient')" class="btn-style" title="Animated Gradient">🌈</button>
+                    <button onclick="setStyle('style-retro')" class="btn-style" title="Retro LCD">📟</button>
+                    <button onclick="setStyle('style-glass')" class="btn-style" title="Glassmorphism">🧊</button>
+                    <button onclick="setStyle('style-cyberpunk')" class="btn-style" title="Cyberpunk">🤖</button>
+                    <button onclick="setStyle('style-led')" class="btn-style" title="LED Red">🔴</button>
+                    <button onclick="setStyle('style-flip')" class="btn-style" title="Flip Clock">📅</button>
+                    <button onclick="setStyle('style-transparent')" class="btn-style" title="Ghost UI">👻</button>
+                    <button onclick="setStyle('style-premium')" class="btn-style" title="Premium Gold">🏆</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Format</label>
+                <button id="format-toggle" class="btn-toggle">Switch to 24H</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
