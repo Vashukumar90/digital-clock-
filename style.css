@@ -1,0 +1,296 @@
+/* --- Base Reset & Layout --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f172a; /* Dark Blue Base */
+    background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* --- Clock Container Base --- */
+#clock-container {
+    position: relative;
+    padding: 40px 60px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    min-width: 300px;
+}
+
+.time-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+#time-display {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.ampm {
+    font-size: 1.5rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.date {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- Controls --- */
+.controls {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 600px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.style-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.btn-style {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.btn-style:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.btn-toggle {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-toggle:hover {
+    background: #2563eb;
+}
+
+/* =========================================
+   THE 10 CLOCK STYLES
+   ========================================= */
+
+/* 1. Neon Glow */
+.style-neon {
+    background: #000;
+    border: 2px solid #0ff;
+    box-shadow: 0 0 20px #0ff, inset 0 0 20px #0ff;
+}
+.style-neon #time-display {
+    font-family: 'Orbitron', sans-serif;
+    color: #0ff;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+.style-neon .ampm { color: #f0f; text-shadow: 0 0 10px #f0f; }
+.style-neon .date { color: #fff; }
+
+/* 2. Minimal White */
+.style-minimal {
+    background: transparent;
+    box-shadow: none;
+}
+.style-minimal #time-display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: -2px;
+}
+.style-minimal .ampm { font-size: 1rem; color: #aaa; }
+.style-minimal .date { color: #888; font-size: 0.9rem; }
+
+/* 3. Animated Gradient */
+.style-gradient {
+    background: linear-gradient(45deg, #ff00cc, #333399);
+    border: none;
+}
+.style-gradient #time-display {
+    font-family: 'Righteous', cursive;
+    background: linear-gradient(to right, #fff, #ff99cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4.5rem;
+}
+.style-gradient .ampm { color: #fff; }
+.style-gradient .date { color: rgba(255,255,255,0.7); }
+
+/* 4. Retro LCD */
+.style-retro {
+    background: #1a1a1a;
+    border: 4px solid #444;
+    border-radius: 10px;
+    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+}
+.style-retro #time-display {
+    font-family: 'Share Tech Mono', monospace;
+    color: #39ff14; /* Neon Green */
+    text-shadow: 0 0 5px #39ff14;
+    font-size: 4rem;
+}
+.style-retro .ampm { color: #39ff14; }
+.style-retro .date { color: #39ff14; opacity: 0.7; }
+
+/* 5. Glassmorphism */
+.style-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+.style-glass #time-display {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.style-glass .ampm { color: rgba(255,255,255,0.6); }
+.style-glass .date { color: rgba(255,255,255,0.5); }
+
+/* 6. Cyberpunk */
+.style-cyberpunk {
+    background: #000;
+    border: 2px solid #fcee0a;
+    position: relative;
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+}
+.style-cyberpunk #time-display {
+    font-family: 'Orbitron', sans-serif;
+    color: #fcee0a;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+}
+.style-cyberpunk .ampm { color: #fcee0a; }
+.style-cyberpunk .date { color: #fcee0a; font-size: 1rem; letter-spacing: 3px; }
+
+/* 7. LED Red */
+.style-led {
+    background: #111;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px #000;
+}
+.style-led #time-display {
+    font-family: 'Share Tech Mono', monospace;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+    font-size: 4.5rem;
+}
+.style-led .ampm { color: #ff0000; }
+.style-led .date { color: #880000; }
+
+/* 8. Flip Clock Style (Simulated) */
+.style-flip {
+    background: #222;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.style-flip #time-display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #ddd;
+    background: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 0 #111;
+    font-size: 4rem;
+    display: inline-block;
+}
+.style-flip .ampm { display: block; margin-top: 10px; color: #666; font-size: 1rem;}
+.style-flip .date { color: #666; margin-top: 15px; }
+
+/* 9. Transparent Modern UI */
+.style-transparent {
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.style-transparent #time-display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: rgba(255,255,255,0.3); /* Ghostly */
+    font-size: 6rem;
+}
+.style-transparent .ampm { color: rgba(255,255,255,0.5); }
+.style-transparent .date { color: rgba(255,255,255,0.4); }
+
+/* 10. Bold Premium */
+.style-premium {
+    background: linear-gradient(135deg, #1c1c1c, #000);
+    border: 1px solid #d4af37; /* Gold border */
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+}
+.style-premium #time-display {
+    font-family: 'Playfair Display', serif; /* Fallback if not loaded, usually serif */
+    font-family: 'Times New Roman', serif;
+    background: linear-gradient(to bottom, #fff, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5rem;
+    font-style: italic;
+}
+.style-premium .ampm { color: #d4af37; }
+.style-premium .date { color: #888; font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    #time-display { font-size: 3.5rem; }
+    .style-grid { grid-template-columns: repeat(4, 1fr); }
+    .container { gap: 20px; }
+}
