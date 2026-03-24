@@ -1,0 +1,84 @@
+// DOM Elements
+const timeDisplay = document.getElementById('time-display');
+const ampmDisplay = document.getElementById('ampm-display');
+const dateDisplay = document.getElementById('date-display');
+const clockContainer = document.getElementById('clock-container');
+const formatToggleBtn = document.getElementById('format-toggle');
+
+// State
+let is24HourFormat = false;
+
+// Update Clock Function
+function updateClock() {
+    const now = new Date();
+    
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    let ampm = '';
+
+    // Handle 12/24 Hour Format
+    if (!is24HourFormat) {
+        ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+    } else {
+        ampm = ''; // Hide AM/PM in 24h mode
+    }
+
+    // Format numbers to always have 2 digits (e.g., 09 instead of 9)
+    const strHours = hours < 10 ? '0' + hours : hours;
+    const strMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const strSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+    // Update DOM
+    timeDisplay.textContent = `${strHours}:${strMinutes}:${strSeconds}`;
+    
+    if (!is24HourFormat) {
+        ampmDisplay.textContent = ampm;
+        ampmDisplay.style.display = 'inline';
+    } else {
+        ampmDisplay.style.display = 'none';
+    }
+
+    // Update Date
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+    dateDisplay.textContent = now.toLocaleDateString('en-US', options);
+}
+
+// Toggle Format Function
+function toggleFormat() {
+    is24HourFormat = !is24HourFormat;
+    
+    if (is24HourFormat) {
+        formatToggleBtn.textContent = 'Switch to 12H';
+        formatToggleBtn.style.background = '#ef4444'; // Red for 24h
+    } else {
+        formatToggleBtn.textContent = 'Switch to 24H';
+        formatToggleBtn.style.background = '#3b82f6'; // Blue for 12h
+    }
+    
+    updateClock(); // Immediate update
+}
+
+// Set Style Function
+function setStyle(styleClass) {
+    // Remove all possible style classes
+    const allStyles = [
+        'style-neon', 'style-minimal', 'style-gradient', 'style-retro', 
+        'style-glass', 'style-cyberpunk', 'style-led', 'style-flip', 
+        'style-transparent', 'style-premium'
+    ];
+    
+    allStyles.forEach(cls => clockContainer.classList.remove(cls));
+    
+    // Add selected class
+    clockContainer.classList.add(styleClass);
+}
+
+// Event Listeners
+formatToggleBtn.addEventListener('click', toggleFormat);
+
+// Initialize
+setInterval(updateClock, 1000); // Run every second
+updateClock(); // Run immediately on load
